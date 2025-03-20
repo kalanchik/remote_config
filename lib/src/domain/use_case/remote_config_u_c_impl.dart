@@ -4,10 +4,12 @@ import 'package:firebase_remote_config/firebase_remote_config.dart';
 import 'package:remote_config/src/core/type_defs.dart';
 import 'package:remote_config/src/data/models/available_banks/config_available_banks_dto.dart';
 import 'package:remote_config/src/data/models/banks_info/config_banks_dto.dart';
+import 'package:remote_config/src/data/models/change_log/config_change_log_dto.dart';
 import 'package:remote_config/src/data/models/config_value.dart';
 import 'package:remote_config/src/data/models/tokens_info/config_tokens_dto.dart';
 import 'package:remote_config/src/domain/entitty/available_banks/config_available_banks.dart';
 import 'package:remote_config/src/domain/entitty/bank_info/config_banks.dart';
+import 'package:remote_config/src/domain/entitty/change_log/config_change_log.dart';
 import 'package:remote_config/src/domain/entitty/tokens_info/config_tokens.dart';
 import 'package:remote_config/src/domain/repository/remote_config_repository.dart';
 import 'package:remote_config/src/domain/use_case/remote_config_u_c.dart';
@@ -52,7 +54,23 @@ class RemoteConfigUCImpl implements RemoteConfigUC {
   }
 
   @override
-  Future<void> getChangeLog() async {}
+  Future<ConfigChangeLog> getChangeLog() async {
+    try {
+      final response = await _repository.getChangeLog();
+
+      if (response == null || response.isEmpty) {
+        return ConfigChangeLog(lastBuild: "1.0.0", allBuilds: []);
+      }
+
+      final data = jsonDecode(response) as Json;
+
+      final dto = ConfigChangeLogDto.fromJson(data);
+
+      return dto.toEntity();
+    } catch (e) {
+      return ConfigChangeLog(lastBuild: "1.0.0", allBuilds: []);
+    }
+  }
 
   @override
   Future<ConfigTokens> getTokensInfo() async {
