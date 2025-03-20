@@ -1,6 +1,6 @@
 name: remote_config
-description: "A new Flutter package project."
-version: 0.0.1
+description: "Firebase Remote Config"
+version: 1.0.0
 homepage:
 
 environment:
