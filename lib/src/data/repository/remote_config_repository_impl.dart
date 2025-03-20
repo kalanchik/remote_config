@@ -11,6 +11,7 @@ class RemoteConfigRepositoryImpl implements RemoteConfigRepository {
   static const String _bankInfo = "bank_info";
   static const String _tokensInfo = "tokens_info";
   static const String _changeLogs = "change_logs";
+  static const String _crmMerchants = "crm_merch";
 
   @override
   Future<void> init(RemoteConfigSettings? settings) async {
@@ -59,5 +60,10 @@ class RemoteConfigRepositoryImpl implements RemoteConfigRepository {
   @override
   Future<String?> getChangeLog() async {
     return _instance.getString(_changeLogs);
+  }
+
+  @override
+  Future<String?> getMerchants() async {
+    return _instance.getString(_crmMerchants);
   }
 }

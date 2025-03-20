@@ -15,4 +15,6 @@ abstract class RemoteConfigRepository {
   Future<String?> getTokensInfo();
 
   Future<String?> getChangeLog();
+
+  Future<String?> getMerchants();
 }

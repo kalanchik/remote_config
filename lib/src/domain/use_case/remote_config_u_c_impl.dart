@@ -6,10 +6,12 @@ import 'package:remote_config/src/data/models/available_banks/config_available_b
 import 'package:remote_config/src/data/models/banks_info/config_banks_dto.dart';
 import 'package:remote_config/src/data/models/change_log/config_change_log_dto.dart';
 import 'package:remote_config/src/data/models/config_value.dart';
+import 'package:remote_config/src/data/models/merchants/config_merchants_dto.dart';
 import 'package:remote_config/src/data/models/tokens_info/config_tokens_dto.dart';
 import 'package:remote_config/src/domain/entitty/available_banks/config_available_banks.dart';
 import 'package:remote_config/src/domain/entitty/bank_info/config_banks.dart';
 import 'package:remote_config/src/domain/entitty/change_log/config_change_log.dart';
+import 'package:remote_config/src/domain/entitty/merchants/config_merchants.dart';
 import 'package:remote_config/src/domain/entitty/tokens_info/config_tokens.dart';
 import 'package:remote_config/src/domain/repository/remote_config_repository.dart';
 import 'package:remote_config/src/domain/use_case/remote_config_u_c.dart';
@@ -119,6 +121,25 @@ class RemoteConfigUCImpl implements RemoteConfigUC {
       return true;
     } catch (_) {
       return false;
+    }
+  }
+
+  @override
+  Future<ConfigMerchants> getMerchants() async {
+    try {
+      final response = await _repository.getMerchants();
+
+      if (response == null || response.isEmpty) {
+        return ConfigMerchants({});
+      }
+
+      final data = jsonDecode(response);
+
+      final dto = ConfigMerchantsDto.fromJson(data);
+
+      return dto.toEntity();
+    } catch (e) {
+      return ConfigMerchants({});
     }
   }
 }
