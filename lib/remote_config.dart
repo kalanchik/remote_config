@@ -11,3 +11,4 @@ export 'src/domain/entitty/change_log/config_change_log.dart';
 export 'src/domain/entitty/change_log/version_info.dart';
 export 'src/domain/entitty/merchants/config_merchants.dart';
 export 'src/domain/entitty/merchants/merchant_info.dart';
+export 'src/data/models/remote_config_models.dart';
