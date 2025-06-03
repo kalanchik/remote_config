@@ -13,6 +13,16 @@ class AvailableBankForm extends Equatable {
     required this.addCardHolder,
   });
 
+  AvailableBankForm copyWith({
+    MainAddressType? mainAddress,
+    SecondaryAddressType? secondaryAddress,
+    bool? addCardHolder,
+  }) => AvailableBankForm(
+    mainAddress: mainAddress ?? this.mainAddress,
+    secondaryAddress: secondaryAddress ?? this.secondaryAddress,
+    addCardHolder: addCardHolder ?? this.addCardHolder,
+  );
+
   @override
   List<Object?> get props => [mainAddress, secondaryAddress, addCardHolder];
 }
