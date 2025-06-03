@@ -18,7 +18,7 @@ class AvailableBankFormDto extends Equatable {
       AvailableBankFormDto(
         mainAddress: json['main_address'] as String,
         secondaryAddress: json['secondary_address'] as String?,
-        addBio: json['add_bio'] as bool,
+        addBio: (json['add_bio'] as String) == "true",
       );
 
   Map<String, dynamic> toJson() => {
