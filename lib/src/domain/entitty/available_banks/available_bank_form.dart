@@ -23,6 +23,13 @@ class AvailableBankForm extends Equatable {
     addCardHolder: addCardHolder ?? this.addCardHolder,
   );
 
+  AvailableBankForm updateSecondary(SecondaryAddressType? secondaryAddress) =>
+      AvailableBankForm(
+        mainAddress: mainAddress,
+        secondaryAddress: secondaryAddress,
+        addCardHolder: addCardHolder,
+      );
+
   @override
   List<Object?> get props => [mainAddress, secondaryAddress, addCardHolder];
 }
