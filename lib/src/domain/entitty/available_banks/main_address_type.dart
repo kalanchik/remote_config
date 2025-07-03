@@ -76,15 +76,3 @@ class MainAddressTypeIBAN extends MainAddressType {
   @override
   List<Object?> get props => [type];
 }
-
-class MainAddressTypeURL extends MainAddressType {
-  const MainAddressTypeURL();
-
-  static const String type = "url";
-
-  @override
-  String get value => type;
-
-  @override
-  List<Object?> get props => [type];
-}
